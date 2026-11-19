@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "product": "MotoKey",
+  "channel": "stable",
+  "latest_version": null,
+  "versions": [],
+  "message": "Пока нет опубликованных прошивок. Не выполняйте обновление.",
+  "manifest_updated_utc": "2026-11-19T00:00:00Z",
+  "firmware_format": {
+    "type": "esp32-esptool-write-flash",
+    "chip": "esp32",
+    "flash_mode": "dio",
+    "flash_frequency": "80m",
+    "flash_size": "4MB",
+    "erase_flash": false,
+    "note": "Публиковать только после подтверждения совместимости partition table и NVS."
+  },
+  "version_entry_schema": {
+    "version": "semver",
+    "release_tag": "vX.Y.Z",
+    "release_url": "https://github.com/sdvg001/MotoKey-Firmware/releases/tag/vX.Y.Z",
+    "notes": "Краткое описание изменений",
+    "min_flasher_version": "1.2.0",
+    "chip": "esp32",
+    "files": [
+      {
+        "name": "bootloader.bin",
+        "offset": "0x1000",
+        "sha256": "64 lowercase hex chars"
+      },
+      {
+        "name": "partitions.bin",
+        "offset": "0x8000",
+        "sha256": "64 lowercase hex chars"
+      },
+      {
+        "name": "boot_app0.bin",
+        "offset": "0xE000",
+        "sha256": "64 lowercase hex chars"
+      },
+      {
+        "name": "motokey.bin",
+        "offset": "0x10000",
+        "sha256": "64 lowercase hex chars"
+      }
+    ],
+    "nvs_compatible": "boolean",
+    "partition_table_sha256": "64 lowercase hex chars"
+  }
+}
