@@ -21,8 +21,7 @@
     },
     "channel": {
       "enum": [
-        "stable",
-        "beta"
+        "stable"
       ]
     },
     "latest_version": {
@@ -147,7 +146,8 @@
                   "pattern": "^[a-f0-9]{64}$"
                 }
               }
-            }
+            },
+            "maxItems": 4
           }
         }
       }
