@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MotoKey firmware update manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "product",
+    "channel",
+    "latest_version",
+    "updated_at",
+    "message",
+    "versions"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "product": {
+      "const": "MotoKey"
+    },
+    "channel": {
+      "enum": [
+        "stable",
+        "beta"
+      ]
+    },
+    "latest_version": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "message": {
+      "type": "string"
+    },
+    "versions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "version",
+          "release_tag",
+          "release_url",
+          "notes",
+          "min_flasher_version",
+          "chip",
+          "flash",
+          "nvs_compatible",
+          "partition_table_sha256",
+          "files"
+        ],
+        "properties": {
+          "version": {
+            "type": "string",
+            "pattern": "^\\d+\\.\\d+\\.\\d+$"
+          },
+          "release_tag": {
+            "type": "string"
+          },
+          "release_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "min_flasher_version": {
+            "type": "string",
+            "pattern": "^\\d+\\.\\d+\\.\\d+$"
+          },
+          "chip": {
+            "const": "esp32"
+          },
+          "flash": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "mode",
+              "frequency",
+              "size",
+              "erase_flash"
+            ],
+            "properties": {
+              "mode": {
+                "const": "dio"
+              },
+              "frequency": {
+                "const": "80m"
+              },
+              "size": {
+                "const": "4MB"
+              },
+              "erase_flash": {
+                "const": false
+              }
+            }
+          },
+          "nvs_compatible": {
+            "type": "boolean"
+          },
+          "partition_table_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "files": {
+            "type": "array",
+            "minItems": 4,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "name",
+                "offset",
+                "url",
+                "sha256"
+              ],
+              "properties": {
+                "name": {
+                  "enum": [
+                    "bootloader.bin",
+                    "partitions.bin",
+                    "boot_app0.bin",
+                    "motokey.bin"
+                  ]
+                },
+                "offset": {
+                  "enum": [
+                    "0x1000",
+                    "0x8000",
+                    "0xE000",
+                    "0x10000"
+                  ]
+                },
+                "url": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
