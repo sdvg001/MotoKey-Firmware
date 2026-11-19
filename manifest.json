@@ -2,8 +2,51 @@
   "schema_version": 1,
   "product": "MotoKey",
   "channel": "stable",
-  "latest_version": null,
-  "updated_at": "2026-11-19T00:00:00Z",
-  "message": "Пока нет опубликованных прошивок. Не выполняйте обновление.",
-  "versions": []
+  "latest_version": "3.1.0",
+  "updated_at": "2026-11-19T05:58:49Z",
+  "message": "Доступна MotoKey CORE 3.1.0 — Multi Client.",
+  "versions": [
+    {
+      "version": "3.1.0",
+      "release_tag": "v3.1.0",
+      "release_url": "https://github.com/sdvg001/MotoKey-Firmware/releases/tag/v3.1.0",
+      "notes": "Multi Client: trusted devices, multiple BLE clients",
+      "min_flasher_version": "1.3.0",
+      "chip": "esp32",
+      "flash": {
+        "mode": "dio",
+        "frequency": "80m",
+        "size": "4MB",
+        "erase_flash": false
+      },
+      "nvs_compatible": true,
+      "partition_table_sha256": "148b959cbff1c38aa8e1d5c0ba9d612c54997b945e56a63f41223eef650653a1",
+      "files": [
+        {
+          "name": "bootloader.bin",
+          "offset": "0x1000",
+          "url": "https://github.com/sdvg001/MotoKey-Firmware/releases/download/v3.1.0/bootloader.bin",
+          "sha256": "7c5e6c42dcd3b658a81374d51e42aa839559b936df3ec181e94e864880b29fc2"
+        },
+        {
+          "name": "partitions.bin",
+          "offset": "0x8000",
+          "url": "https://github.com/sdvg001/MotoKey-Firmware/releases/download/v3.1.0/partitions.bin",
+          "sha256": "148b959cbff1c38aa8e1d5c0ba9d612c54997b945e56a63f41223eef650653a1"
+        },
+        {
+          "name": "boot_app0.bin",
+          "offset": "0xE000",
+          "url": "https://github.com/sdvg001/MotoKey-Firmware/releases/download/v3.1.0/boot_app0.bin",
+          "sha256": "f94c5d786a7a8fab06ac5d10e33bf37711a6697636dc037559ea19cc410a17f0"
+        },
+        {
+          "name": "motokey.bin",
+          "offset": "0x10000",
+          "url": "https://github.com/sdvg001/MotoKey-Firmware/releases/download/v3.1.0/motokey.bin",
+          "sha256": "d2b53733739d38d798f086cde34b74ed16743491138c99583f4db051696d5845"
+        }
+      ]
+    }
+  ]
 }
