@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - "firmware/**"
+      - "firmware/MotoKey_CORE_3_2_0_SHARED_TOKEN/**"
       - ".github/workflows/build-firmware.yml"
 
 permissions:
@@ -44,10 +44,23 @@ jobs:
           mkdir -p build dist
           arduino-cli compile --warnings all --fqbn "$FQBN" --output-dir build "$SKETCH_DIR"
 
-          cp "build/${SKETCH}.bootloader.bin" dist/bootloader.bin
-          cp "build/${SKETCH}.partitions.bin" dist/partitions.bin
-          cp "build/boot_app0.bin" dist/boot_app0.bin
-          cp "build/${SKETCH}.bin" dist/motokey.bin
+          echo "Arduino CLI output files:"
+          ls -la build
+
+          BOOTLOADER_FILE="$(find build -maxdepth 1 -type f -name '*.bootloader.bin' -print -quit)"
+          PARTITIONS_FILE="$(find build -maxdepth 1 -type f -name '*.partitions.bin' -print -quit)"
+          BOOT_APP0_FILE="$(find build -maxdepth 1 -type f -name 'boot_app0.bin' -print -quit)"
+          SKETCH_BIN_FILE="$(find build -maxdepth 1 -type f -name '*.ino.bin' -print -quit)"
+
+          test -n "$BOOTLOADER_FILE"
+          test -n "$PARTITIONS_FILE"
+          test -n "$BOOT_APP0_FILE"
+          test -n "$SKETCH_BIN_FILE"
+
+          cp "$BOOTLOADER_FILE" dist/bootloader.bin
+          cp "$PARTITIONS_FILE" dist/partitions.bin
+          cp "$BOOT_APP0_FILE" dist/boot_app0.bin
+          cp "$SKETCH_BIN_FILE" dist/motokey.bin
 
           test -s dist/bootloader.bin
           test -s dist/partitions.bin
