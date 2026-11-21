@@ -2,7 +2,8 @@
 
 MotoKey — проект программного обеспечения для контроллера на ESP32: прошивка, Android-приложение и Windows-инструмент MotoKey Flasher.
 
-**Страница проекта и инструкции:** https://sdvg001.github.io/MotoKey-Firmware/
+**Страница проекта:** https://sdvg001.github.io/MotoKey-Firmware/  
+**Подробная инструкция Android и Windows Flasher:** https://sdvg001.github.io/MotoKey-Firmware/instructions.html
 
 ## Текущие версии
 
@@ -50,7 +51,7 @@ MotoKey — проект программного обеспечения для 
 
 ## Инструкции и поддержка
 
-Пошаговые инструкции по установке Flasher, подключению ESP32, обычному обновлению, первичной привязке и сбросу привязки размещены на [странице проекта](https://sdvg001.github.io/MotoKey-Firmware/).
+Подробное руководство пользователя по установке и подключению Android-приложения, работе с общим кодом для нескольких телефонов, управлению и настройкам, а также по установке и использованию Windows Flasher размещено на [странице инструкций](https://sdvg001.github.io/MotoKey-Firmware/instructions.html).
 
 Сообщения об ошибках и вопросы по проекту: [GitHub Issues](https://github.com/sdvg001/MotoKey-Firmware/issues).
 
