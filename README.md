@@ -51,6 +51,12 @@ MotoKey — мой небольшой проект для мототехники
 
 Полные сведения и файлы доступны на странице [Releases](https://github.com/sdvg001/MotoKey-Firmware/releases).
 
+## Заметки к версиям
+
+- [CORE 3.2.0 — Shared Token](release-notes/3.2.0.md)
+- [Android 1.1.0+4 и Windows Flasher 1.5.0](release-notes/apps-v1.1.0.md)
+- [CORE 3.1.0 — Multi Client](release-notes/3.1.0.md)
+
 ## Инструкции и обратная связь
 
 Подробное руководство пользователя по установке и подключению Android-приложения, работе с общим кодом для нескольких телефонов, управлению и настройкам, а также по установке и использованию Windows Flasher размещено на [странице инструкций](https://sdvg001.github.io/MotoKey-Firmware/instructions.html).
