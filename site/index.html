@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#08111f">
+<meta name="description" content="MotoKey — прошивка ESP32, Android-приложение и MotoKey Flasher для Windows. Загрузки, инструкции и история версий.">
+<title>MotoKey — загрузки и инструкции</title>
+<style>
+:root{color-scheme:dark;--bg:#08111f;--panel:#101c2c;--line:#263b54;--text:#eff6ff;--muted:#9db0c7;--blue:#36a7ff;--cyan:#42d8e8;--green:#66d6a6;--amber:#ffc66e}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(900px 500px at 85% -10%,#12345b 0%,transparent 65%),var(--bg);color:var(--text);font:16px/1.6 "Segoe UI",Arial,sans-serif}
+a{color:#80caff;text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1120px;margin:auto;padding:0 24px}
+header{border-bottom:1px solid rgba(130,170,210,.16);background:rgba(8,17,31,.72);backdrop-filter:blur(12px);position:sticky;top:0;z-index:10}
+.nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--text);font-weight:800;font-size:21px;letter-spacing:.2px}
+.mark{width:38px;height:38px;border-radius:12px;background:linear-gradient(145deg,#143b62,#0c1a2b);border:1px solid #2876b5;display:grid;place-items:center;box-shadow:0 0 22px #1688d433}
+.mark svg{width:24px;height:24px}
+nav{display:flex;gap:22px;font-size:14px;color:var(--muted)}
+nav a{color:var(--muted)}
+.hero{padding:82px 0 58px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid #28618a;background:#0f2942;color:#9bd7ff;border-radius:999px;padding:6px 12px;font-size:13px;font-weight:700}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green)}
+h1{font-size:clamp(44px,7vw,76px);line-height:1.04;letter-spacing:-2.4px;margin:22px 0 16px}
+.grad{background:linear-gradient(90deg,#fff 10%,#9bdcff 58%,#42d8e8);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{max-width:720px;color:#b7c9dc;font-size:20px;line-height:1.55;margin:0 0 28px}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:12px 18px;border-radius:12px;font-weight:750;border:1px solid #2c5c83;background:#122a43;color:#eaf7ff}
+.btn.primary{background:linear-gradient(110deg,#1688e2,#1774bf);border-color:#3da8f5;color:white;box-shadow:0 10px 28px #1688e233}
+.btn:hover{filter:brightness(1.12);text-decoration:none}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:linear-gradient(160deg,rgba(21,39,60,.95),rgba(13,25,41,.98));border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 12px 36px #0002}
+.card h2,.card h3{margin:0 0 8px;line-height:1.25}
+.card p{color:var(--muted);margin:0 0 16px}
+.icon{width:42px;height:42px;border-radius:12px;background:#173a5a;border:1px solid #2d6b9c;display:grid;place-items:center;font-size:20px;margin-bottom:16px}
+.status{display:inline-block;border-radius:999px;padding:4px 9px;font-size:12px;font-weight:750;background:#3a2d18;color:var(--amber);border:1px solid #74552a}
+.status.live{background:#12372d;color:#82e2b7;border-color:#286b55}
+section{padding:28px 0 44px}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:18px}
+h2.section-title{font-size:30px;letter-spacing:-.7px;margin:0}
+.section-sub{color:var(--muted);margin:4px 0 0}
+.note{border:1px solid #6b532d;background:#2a2115;color:#f8d59d;border-radius:14px;padding:15px 18px;margin-top:18px}
+.steps{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.step{display:flex;gap:14px;background:#0f1c2c;border:1px solid var(--line);border-radius:15px;padding:18px}
+.num{flex:0 0 30px;height:30px;border-radius:9px;background:#153b5b;color:#9bdcff;display:grid;place-items:center;font-weight:800}
+.step p{color:var(--muted);margin:5px 0 0}
+table{width:100%;border-collapse:collapse;background:#0f1b2a;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+th,td{text-align:left;padding:14px 16px;border-bottom:1px solid #24384d}
+th{font-size:13px;color:#9bb2ca;background:#13253a}
+td{color:#dbe9f7}
+td small{display:block;color:var(--muted);margin-top:3px}
+footer{border-top:1px solid rgba(130,170,210,.16);margin-top:36px;padding:28px 0 42px;color:var(--muted);font-size:14px}
+.footer-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media(max-width:800px){nav{display:none}.grid{grid-template-columns:1fr}.hero{padding-top:56px}.steps{grid-template-columns:1fr}.section-head{display:block}h2.section-title{font-size:26px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#">
+      <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="#a8e1ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="3"/><path d="M9 2v4m6-4v4M9 18v4m6-4v4M2 9h4m-4 6h4m12-6h4m-4 6h4"/><path d="m12 9-2 3h4l-2 3"/></svg></span>
+      MotoKey
+    </a>
+    <nav><a href="#downloads">Загрузки</a><a href="#start">Начало работы</a><a href="#versions">Версии</a><a href="#support">Поддержка</a></nav>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+    <section class="hero">
+      <span class="eyebrow"><span class="dot"></span> Проект для контроллера MotoKey</span>
+      <h1><span class="grad">MotoKey</span><br>всё для работы с контроллером</h1>
+      <p class="lead">Android-приложение, Windows Flasher и прошивка ESP32 в одном проекте. Здесь собраны официальные файлы, инструкции по подключению и история версий.</p>
+      <div class="actions">
+        <a class="btn primary" href="#downloads">Перейти к загрузкам ↓</a>
+        <a class="btn" href="https://github.com/sdvg001/MotoKey-Firmware/releases">Все релизы на GitHub ↗</a>
+      </div>
+    </section>
+
+    <section id="downloads">
+      <div class="section-head">
+        <div><h2 class="section-title">Загрузки</h2><p class="section-sub">Используй только официальные сборки MotoKey.</p></div>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <div class="icon">📱</div>
+          <h2>Android-приложение</h2>
+          <p>MotoKey для подключения телефона к контроллеру и управления им.</p>
+          <p><strong>Текущая сборка:</strong> 1.1.0+4</p>
+          <span class="status">APK готовится к публикации</span>
+          <p style="margin-top:14px;font-size:14px">Публичный APK будет добавлен в GitHub Releases. Пока не устанавливай файлы из сторонних источников.</p>
+        </article>
+        <article class="card">
+          <div class="icon">💻</div>
+          <h2>Windows Flasher</h2>
+          <p>Установка и обновление прошивки ESP32, проверка COM-порта и контроль совместимости NVS.</p>
+          <p><strong>Текущая версия:</strong> 1.5.0</p>
+          <span class="status">Установщик готовится к публикации</span>
+          <p style="margin-top:14px;font-size:14px">Публичный Setup-файл будет добавлен в GitHub Releases. Требуется Windows x64 и .NET 10 Desktop Runtime.</p>
+        </article>
+        <article class="card">
+          <div class="icon">⚙️</div>
+          <h2>Прошивка ESP32</h2>
+          <p>MotoKey CORE 3.2.0 — Shared Token. До трёх одновременных BLE-подключений с общим токеном.</p>
+          <p><strong>Последняя версия:</strong> 3.2.0</p>
+          <span class="status live">Опубликована</span>
+          <p style="margin-top:14px"><a class="btn primary" href="https://github.com/sdvg001/MotoKey-Firmware/releases/tag/v3.2.0">Открыть релиз 3.2.0 ↗</a></p>
+        </article>
+      </div>
+      <div class="note"><strong>Важно:</strong> для обычного обновления уже привязанного контроллера не включай флажок сброса привязки в Flasher. Сброс удалит текущие pairing-данные, после чего телефоны придётся подключить заново.</div>
+    </section>
+
+    <section id="start">
+      <div class="section-head">
+        <div><h2 class="section-title">Начало работы</h2><p class="section-sub">Правильный порядок установки и обновления контроллера.</p></div>
+      </div>
+      <div class="steps">
+        <div class="step"><span class="num">1</span><div><strong>Установи MotoKey Flasher</strong><p>Запусти Windows-установщик. При необходимости установи .NET 10 Desktop Runtime x64.</p></div></div>
+        <div class="step"><span class="num">2</span><div><strong>Подключи ESP32 по USB</strong><p>Закрой Arduino Serial Monitor и другие программы, которые могут занимать COM-порт. Выбери порт в Flasher.</p></div></div>
+        <div class="step"><span class="num">3</span><div><strong>Проверь контроллер</strong><p>Нажми «ПРОВЕРИТЬ ESP32». Flasher должен подтвердить классический ESP32 и Flash 4 MB.</p></div></div>
+        <div class="step"><span class="num">4</span><div><strong>Выбери версию и прошей</strong><p>Выбери стабильную версию. Flasher проверит кеш и SHA-256, а перед записью — совместимость таблицы разделов/NVS.</p></div></div>
+        <div class="step"><span class="num">5</span><div><strong>Сохрани существующую привязку</strong><p>Для обычного обновления оставь выключенным флажок «Сбросить старую привязку и создать новую».</p></div></div>
+        <div class="step"><span class="num">6</span><div><strong>Подключи телефон</strong><p>Установи официальный APK MotoKey. Для новой платы используй созданный Flasher pairing-код; для уже привязанной платы не сбрасывай привязку без необходимости.</p></div></div>
+      </div>
+      <div class="note">После прошивки проверь работу контроллера на стенде. Не подключай стартер, пока не убедишься, что система работает корректно.</div>
+    </section>
+
+    <section id="versions">
+      <div class="section-head">
+        <div><h2 class="section-title">История версий</h2><p class="section-sub">Текущие сборки и опубликованные релизы.</p></div>
+      </div>
+      <table>
+        <thead><tr><th>Компонент</th><th>Версия</th><th>Изменения / статус</th></tr></thead>
+        <tbody>
+          <tr><td>ESP32 Firmware</td><td>3.2.0</td><td>Shared Token — до 3 BLE-телефонов, общий токен.<small><a href="https://github.com/sdvg001/MotoKey-Firmware/releases/tag/v3.2.0">Опубликованный релиз</a></small></td></tr>
+          <tr><td>ESP32 Firmware</td><td>3.1.0</td><td>Multi Client — несколько BLE-клиентов.<small><a href="https://github.com/sdvg001/MotoKey-Firmware/releases/tag/v3.1.0">Предыдущий релиз</a></small></td></tr>
+          <tr><td>Windows Flasher</td><td>1.5.0</td><td>Кеш прошивок, SHA-256, проверка NVS и сохранение pairing-кода.<small>Публичный Setup-файл ещё не загружен.</small></td></tr>
+          <tr><td>Android</td><td>1.1.0+4</td><td>Текущая рабочая сборка приложения.<small>Публичный APK ещё не загружен.</small></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="support">
+      <div class="card">
+        <h2>Нужна помощь?</h2>
+        <p>Перед обращением приложи версию Flasher, версию прошивки, модель платы и текст ошибки. Не публикуй pairing-коды, токены и другие секретные данные.</p>
+        <div class="actions">
+          <a class="btn primary" href="https://github.com/sdvg001/MotoKey-Firmware/issues">Сообщить об ошибке ↗</a>
+          <a class="btn" href="https://github.com/sdvg001/MotoKey-Firmware">Репозиторий проекта ↗</a>
+          <a class="btn" href="https://github.com/sdvg001/MotoKey-Firmware/releases">История релизов ↗</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+<footer>
+  <div class="wrap footer-row"><div><strong style="color:#eaf5ff">MotoKey</strong><br>Проект контроллера ESP32 и сопутствующего ПО.</div><div>Официальный репозиторий: <a href="https://github.com/sdvg001/MotoKey-Firmware">GitHub / MotoKey-Firmware</a></div></div>
+</footer>
+</body>
+</html>
