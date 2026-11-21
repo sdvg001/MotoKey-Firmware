@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#08111f">
+<meta name="description" content="Официальная инструкция MotoKey: установка и использование Windows Flasher 1.5.0 и Android-приложения 1.1.0+4.">
+<title>MotoKey — инструкции</title>
+<style>
+:root{color-scheme:dark;--bg:#08111f;--panel:#101c2c;--line:#263b54;--text:#eff6ff;--muted:#9db0c7;--blue:#36a7ff;--cyan:#42d8e8;--green:#66d6a6;--amber:#ffc66e;--red:#ff9292}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:radial-gradient(900px 500px at 85% -10%,#12345b 0%,transparent 65%),var(--bg);color:var(--text);font:16px/1.7 "Segoe UI",Arial,sans-serif}
+a{color:#80caff;text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1040px;margin:auto;padding:0 22px}
+header{border-bottom:1px solid rgba(130,170,210,.16);background:rgba(8,17,31,.9);position:sticky;top:0;z-index:5;backdrop-filter:blur(12px)}
+.nav{height:66px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{font-weight:800;font-size:21px;color:var(--text);letter-spacing:.4px}
+.navlinks{display:flex;gap:20px;font-size:14px}
+.navlinks a{color:var(--muted)}
+main{padding:42px 0 64px}
+.eyebrow{display:inline-block;border:1px solid #28618a;background:#0f2942;color:#9bd7ff;border-radius:999px;padding:5px 12px;font-size:13px;font-weight:700}
+h1{font-size:clamp(36px,6vw,58px);line-height:1.08;letter-spacing:-1.6px;margin:18px 0 12px}
+h2{font-size:28px;line-height:1.2;letter-spacing:-.5px;margin:0 0 16px}
+h3{font-size:19px;margin:26px 0 8px;line-height:1.3}
+p{margin:8px 0 14px}
+.lead{font-size:19px;color:#b7c9dc;max-width:790px}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 15px;border-radius:11px;border:1px solid #2c5c83;background:#122a43;color:#eaf7ff;font-weight:750}
+.btn.primary{background:linear-gradient(110deg,#1688e2,#1774bf);border-color:#3da8f5;color:#fff}
+.toc,.panel{background:linear-gradient(160deg,rgba(21,39,60,.96),rgba(13,25,41,.98));border:1px solid var(--line);border-radius:17px;padding:22px;margin:18px 0}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.toc ul{margin:8px 0 0;padding-left:22px}
+.toc li{margin:4px 0}
+.pill{display:inline-block;border-radius:999px;padding:3px 9px;font-size:12px;font-weight:750;background:#12372d;color:#82e2b7;border:1px solid #286b55}
+.warn{border:1px solid #74552a;background:#2a2115;color:#f8d59d;border-radius:13px;padding:14px 17px;margin:16px 0}
+.danger{border-color:#754044;background:#29191d;color:#ffd1d1}
+.info{border:1px solid #28618a;background:#0f2942;color:#cceaff;border-radius:13px;padding:14px 17px;margin:16px 0}
+.steps{counter-reset:step;list-style:none;padding:0;margin:10px 0 16px}
+.steps li{counter-increment:step;position:relative;padding:8px 0 8px 44px;margin:3px 0}
+.steps li:before{content:counter(step);position:absolute;left:0;top:8px;width:29px;height:29px;border-radius:9px;background:#153b5b;color:#9bdcff;display:grid;place-items:center;font-weight:800}
+.section{padding:20px 0;border-top:1px solid rgba(130,170,210,.16);margin-top:24px}
+.muted{color:var(--muted)}
+code{background:#091522;border:1px solid #263b54;border-radius:6px;padding:2px 6px;color:#bde5ff;overflow-wrap:anywhere}
+footer{border-top:1px solid rgba(130,170,210,.16);padding:24px 0 36px;color:var(--muted);font-size:14px}
+@media(max-width:680px){.navlinks{gap:12px;font-size:12px}.toc-grid{grid-template-columns:1fr}h2{font-size:24px}}
+@media print{body{background:#fff;color:#111;font:12pt/1.5 Arial}.navlinks,.hero-actions{display:none}.panel,.toc,.warn,.danger,.info{background:#fff;color:#111;border:1px solid #aaa;break-inside:avoid}a{color:#0645ad;text-decoration:underline}h1,h2,h3{color:#111}header{position:static;background:#fff}.muted{color:#444}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+<a class="brand" href="index.html">MotoKey</a>
+<nav class="navlinks"><a href="index.html">Главная</a><a href="#android">Android</a><a href="#flasher">Windows Flasher</a></nav>
+</div></header>
+<main class="wrap">
+<span class="eyebrow">Официальное руководство пользователя</span>
+<h1>Установка, подключение и работа с MotoKey</h1>
+<p class="lead">Здесь собраны инструкции для Android-приложения MotoKey 1.1.0+4 и Windows Flasher 1.5.0. Сначала выбери нужный раздел. Для обычного пользователя не нужны архивы Source code с GitHub — скачивай APK или установщик Windows.</p>
+<div class="hero-actions">
+<a class="btn primary" href="https://github.com/sdvg001/MotoKey-Firmware/releases/download/apps-v1.1.0/app-release.apk">Скачать Android APK</a>
+<a class="btn primary" href="https://github.com/sdvg001/MotoKey-Firmware/releases/download/apps-v1.1.0/MotoKeyFlasher-Setup-1.5.0-x64.exe">Скачать Windows Setup</a>
+<a class="btn" href="index.html">На главную</a>
+</div>
+
+<div class="toc">
+<h2>Содержание</h2>
+<div class="toc-grid">
+<div><strong>Мобильное приложение</strong><ul>
+<li><a href="#android-install">Установка APK и разрешения</a></li>
+<li><a href="#android-connect">Первое подключение и код</a></li>
+<li><a href="#android-controls">Экран управления</a></li>
+<li><a href="#android-multiple">Подключение второго и третьего телефона</a></li>
+<li><a href="#android-settings">Настройки и сброс токена телефона</a></li>
+<li><a href="#android-errors">Решение проблем</a></li>
+</ul></div>
+<div><strong>Windows Flasher</strong><ul>
+<li><a href="#flasher-requirements">Назначение и требования</a></li>
+<li><a href="#flasher-install">Установка программы</a></li>
+<li><a href="#flasher-connect">Подключение и проверка ESP32</a></li>
+<li><a href="#flasher-download">Выбор и загрузка прошивки</a></li>
+<li><a href="#flasher-update">Обычное обновление</a></li>
+<li><a href="#flasher-new">Первичная настройка новой платы</a></li>
+<li><a href="#flasher-reset">Сброс старой привязки</a></li>
+<li><a href="#flasher-errors">Ошибки и безопасность</a></li>
+</ul></div>
+</div>
+</div>
+
+<section id="android" class="section">
+<span class="pill">Android 1.1.0+4</span>
+<h2>1. Мобильное приложение MotoKey</h2>
+<p>Приложение подключается к контроллеру MotoKey по Bluetooth Low Energy (BLE). Интернет для управления после установки APK не требуется; Bluetooth на телефоне должен быть включён.</p>
+
+<h3 id="android-install">1.1. Установка APK и разрешения</h3>
+<ol class="steps">
+<li>Скачай <a href="https://github.com/sdvg001/MotoKey-Firmware/releases/download/apps-v1.1.0/app-release.apk">официальный app-release.apk</a> со страницы MotoKey.</li>
+<li>Открой скачанный APK через уведомление браузера или приложение «Файлы».</li>
+<li>Если Android попросит разрешение на установку приложений из этого источника, разреши его для браузера или файлового менеджера, которым открыт APK.</li>
+<li>Нажми «Установить», дождись окончания и открой MotoKey.</li>
+<li>Включи Bluetooth. При первом поиске подтверди запрошенные приложением разрешения.</li>
+</ol>
+<div class="info"><strong>Какие разрешения нужны:</strong> на Android 12 и новее — доступ «Устройства поблизости» (Bluetooth Scan/Connect); на Android 11 и старше — разрешение геолокации во время использования приложения для BLE-поиска. Это системные разрешения Android, используемые для поиска BLE-устройств.</div>
+<p>Устанавливай APK только из официального релиза MotoKey. Не скачивай установочный файл со сторонних сайтов.</p>
+
+<h3 id="android-connect">1.2. Первое подключение контроллера</h3>
+<p>Перед подключением контроллер должен быть прошит совместимой прошивкой MotoKey. Для общей авторизации нескольких телефонов используется CORE 3.2.0 — Shared Token.</p>
+<ol class="steps">
+<li>Убедись, что контроллер включён и находится рядом с телефоном.</li>
+<li>Открой MotoKey и нажми <strong>«Найти ESP32»</strong>.</li>
+<li>Разреши доступ к Bluetooth/устройствам поблизости, если Android покажет запрос. Дождись завершения поиска (до 12 секунд).</li>
+<li>В списке выбери найденную плату MotoKey. Если имя платы не передаётся, приложение может показать её как «MotoKey · ESP32» и BLE-адрес.</li>
+<li>После BLE-подключения приложение откроет окно «Идентификация MotoKey». Введи 12 цифр кода привязки, созданного в Windows Flasher. Буквы «MK» и дефисы приложение подставит само. Формат отображения: <code>MK XXXX-XXXX-XXXX</code>.</li>
+<li>Нажми <strong>«Подключить»</strong> и дождись сообщения об успешной авторизации.</li>
+</ol>
+<div class="warn"><strong>Важно:</strong> код привязки — не пароль Wi‑Fi и не токен. Не публикуй и не отправляй его посторонним. Если код неизвестен, не сбрасывай привязку наугад: Windows Flasher не может извлечь старый код из уже привязанной платы, если он ранее не был создан этим экземпляром Flasher.</div>
+<p>После успешного подключения приложение сохраняет общий токен этого контроллера в защищённом хранилище телефона. При следующих подключениях к той же плате приложение обычно авторизуется автоматически — повторно вводить код не требуется.</p>
+
+<h3 id="android-controls">1.3. Элементы экрана управления</h3>
+<div class="panel">
+<h3>Bluetooth BLE</h3>
+<p>Верхний блок показывает состояние поиска, подключения и авторизации. Кнопка <strong>«Найти ESP32»</strong> начинает поиск, а <strong>«Отключить»</strong> завершает текущее BLE-соединение.</p>
+<h3>Обновить состояние</h3>
+<p>Кнопка <strong>«Обновить состояние»</strong> запрашивает у контроллера текущие состояния POWER, START/ARM и длительность импульса.</p>
+<h3>POWER ON / POWER OFF</h3>
+<p>Кнопка включает или выключает выход POWER контроллера. Над ней отображается текущее состояние: «ВКЛЮЧЕНО» или «ВЫКЛЮЧЕНО».</p>
+<h3>START</h3>
+<p>Кнопка запускает предусмотренную контроллером последовательность подтверждения ARM и команды START. При успешном выполнении контроллер формирует импульс с сохранённой длительностью. Для отмены/снятия разрешения предусмотрена кнопка <strong>«СБРОСИТЬ ARM / STOP»</strong>.</p>
+<h3>Длительность импульса</h3>
+<p>Ползунок задаёт значение от <strong>500 до 3000 мс</strong>. После изменения нажми <strong>«СОХРАНИТЬ ИМПУЛЬС В ESP32»</strong>, чтобы отправить значение контроллеру и сохранить его там. Простое перемещение ползунка без сохранения не отправляет новое значение в ESP32.</p>
+</div>
+<div class="warn danger"><strong>Безопасность:</strong> POWER и START управляют выходами контроллера. До подключения к стартеру или другому исполнительному оборудованию проверь всю систему на безопасном стенде. Не нажимай START при подключённом механизме, если не уверен, что зона безопасна и оборудование надёжно зафиксировано.</div>
+
+<h3 id="android-multiple">1.4. Подключение второго и третьего телефона</h3>
+<p>В прошивке CORE 3.2.0 поддерживается до трёх одновременных BLE-подключений с одним общим токеном владельца.</p>
+<ol class="steps">
+<li>Установи MotoKey на второй телефон и включи на нём Bluetooth.</li>
+<li>Нажми «Найти ESP32» и выбери ту же плату.</li>
+<li>Введи <strong>тот же общий код привязки</strong>, который использовался для первого телефона.</li>
+<li>Приложение запросит уже существующий общий токен контроллера, проверит его и сохранит на втором телефоне. Новый токен для второго телефона не создаётся.</li>
+<li>Повтори те же действия на третьем телефоне, если это необходимо.</li>
+</ol>
+<div class="info">Для второго и третьего телефона не нужно сбрасывать привязку в Windows Flasher. Используется тот же код, тот же общий токен и та же плата. Максимум — три одновременно подключённых телефона.</div>
+
+<h3 id="android-settings">1.5. Настройки и сброс токена на телефоне</h3>
+<p>Открой настройки значком шестерёнки в правом верхнем углу. Там доступны тёмная тема и выбор акцентного цвета интерфейса.</p>
+<p>Пункт <strong>«Сбросить привязку на телефоне»</strong> удаляет только сохранённый общий токен на текущем телефоне. После этого приложение отключится, а при следующем подключении попросит общий код и заново получит тот же токен с контроллера.</p>
+<div class="warn danger"><strong>Не путай два разных сброса:</strong> сброс токена в приложении затрагивает только этот телефон. Флажок «Сбросить старую привязку и создать новую» в Windows Flasher стирает pairing-данные на самой ESP32 и лишает доступа все ранее привязанные телефоны. Для обычной работы и добавления второго/третьего телефона этот флажок не нужен.</div>
+
+<h3 id="android-errors">1.6. Если приложение не подключается</h3>
+<ul>
+<li><strong>Плата не найдена:</strong> включи Bluetooth, проверь разрешения Android, поднеси телефон ближе к контроллеру и нажми «Найти ESP32» ещё раз.</li>
+<li><strong>Подключение не устанавливается:</strong> отключи текущие BLE-сеансы, убедись, что контроллер включён, и повтори поиск.</li>
+<li><strong>Не появляется окно кода:</strong> дождись завершения BLE-подключения. Если приложение уже сохранило токен, оно может авторизоваться автоматически.</li>
+<li><strong>Неверный код:</strong> проверь 12 цифр кода в Windows Flasher. После нескольких неверных попыток контроллер может временно ограничить новые попытки — подожди одну минуту.</li>
+<li><strong>Нет ответа на запрос общего токена:</strong> проверь, что на контроллере установлена MotoKey CORE 3.2.0 или более новая совместимая прошивка Shared Token.</li>
+<li><strong>Токен телефона сброшен:</strong> при следующем подключении снова введи общий код привязки. Сама привязка контроллера при этом не меняется.</li>
+</ul>
+</section>
+
+<section id="flasher" class="section">
+<span class="pill">Windows Flasher 1.5.0</span>
+<h2>2. Windows Flasher — установка и использование</h2>
+<p>MotoKey Flasher проверяет подключение контроллера ESP32, получает список прошивок из официального манифеста GitHub, загружает BIN-файлы и проверяет их SHA-256 перед записью.</p>
+
+<h3 id="flasher-requirements">2.1. Что нужно для работы</h3>
+<ul>
+<li>Windows 10 или Windows 11, 64-разрядная версия.</li>
+<li>Интернет для получения списка версий и загрузки файлов прошивки.</li>
+<li><strong>.NET 10 Desktop Runtime x64.</strong> На официальной странице выбери именно «.NET Desktop Runtime» для Windows x64, а не SDK, ASP.NET Runtime или обычный .NET Runtime: <a href="https://dotnet.microsoft.com/en-us/download/dotnet/10.0">скачать .NET 10</a>.</li>
+<li>Контроллер MotoKey на классическом ESP32 с Flash-памятью 4 MB.</li>
+<li>USB-кабель с передачей данных, не только для зарядки.</li>
+<li>Драйвер USB-UART адаптера платы: CH340, CP210x, FTDI или другой установленный на конкретной плате чип.</li>
+</ul>
+<div class="warn danger"><strong>Поддерживаемое устройство:</strong> эта версия Flasher предназначена для классического ESP32 с Flash 4 MB. Обязательная проверка ESP32 должна завершиться успешно. Не пытайся прошивать неподдерживаемую плату.</div>
+
+<h3 id="flasher-install">2.2. Установка и первый запуск</h3>
+<ol class="steps">
+<li>Скачай официальный <a href="https://github.com/sdvg001/MotoKey-Firmware/releases/download/apps-v1.1.0/MotoKeyFlasher-Setup-1.5.0-x64.exe">MotoKeyFlasher-Setup-1.5.0-x64.exe</a>.</li>
+<li>Открой скачанный установщик двойным щелчком и следуй шагам мастера установки.</li>
+<li>После завершения установки запусти MotoKey Flasher из меню «Пуск» или с созданного установщиком ярлыка, если он был выбран.</li>
+<li>Не скачивай и не запускай отдельные DLL или файлы из папки программы вручную. Для этой публичной версии используй Setup-установщик.</li>
+</ol>
+<p>Требуется .NET 10 Desktop Runtime x64. Если программа сообщает об отсутствии нужной среды выполнения, установи её по официальной ссылке из раздела 2.1 и запусти Flasher снова.</p>
+
+<h3 id="flasher-connect">2.3. Подключение контроллера</h3>
+<ol class="steps">
+<li>Подключи ESP32 к компьютеру USB-кабелем с передачей данных.</li>
+<li>Закрой Arduino Serial Monitor, другие терминалы и программы, которые могут занимать COM-порт.</li>
+<li>Запусти MotoKey Flasher и выбери COM-порт контроллера в списке.</li>
+<li>Если порт появился не сразу, нажми «Обновить».</li>
+<li>Убедись, что статус показывает обнаруженный USB-UART адаптер и выбранный COM-порт.</li>
+</ol>
+<p>Если COM-порт не появился, попробуй другой USB-кабель и разъём; открой «Диспетчер устройств» Windows и проверь раздел «Порты (COM и LPT)»; установи драйвер USB-UART для фактически установленного на плате чипа; переподключи контроллер и нажми «Обновить».</p>
+
+<h3>2.4. Обязательная проверка ESP32</h3>
+<ol class="steps">
+<li>Выбери правильный COM-порт.</li>
+<li>Нажми <strong>«ПРОВЕРИТЬ ESP32»</strong>.</li>
+<li>Дождись результата. Flasher должен подтвердить классический ESP32 и Flash 4 MB.</li>
+</ol>
+<p>Проверка только считывает сведения о чипе и Flash-памяти. Она не записывает прошивку и не стирает память. Если проверка не прошла, не нажимай «ПРОШИТЬ ESP32»: сначала проверь COM-порт, USB-кабель, драйвер и тип платы.</p>
+
+<h3 id="flasher-download">2.5. Выбор и загрузка прошивки</h3>
+<ol class="steps">
+<li>При запуске Flasher получает актуальный список версий из GitHub.</li>
+<li>Выбери нужную стабильную версию в раскрывающемся списке.</li>
+<li>Чтобы повторно запросить список версий, нажми «ПРОВЕРИТЬ ОБНОВЛЕНИЯ».</li>
+<li>Кнопка «ПРОВЕРИТЬ / ДОКАЧАТЬ» позволяет заранее проверить и загрузить файлы. Это необязательно: при нажатии «ПРОШИТЬ ESP32» Flasher сам проверит кеш и загрузит недостающее.</li>
+</ol>
+<p>Для выбранной версии используются четыре файла: <code>bootloader.bin</code>, <code>partitions.bin</code>, <code>boot_app0.bin</code> и <code>motokey.bin</code>. Перед использованием каждого файла Flasher проверяет SHA-256 по манифесту GitHub. Исправные файлы повторно не скачиваются; отсутствующие или повреждённые загружаются заново.</p>
+<p>Кеш прошивок хранится в <code>%LOCALAPPDATA%\MotoKeyFlasher\firmware\&lt;версия&gt;\</code>. Он находится вне папки приложения и сохраняется после обновления или переноса программы. Для получения списка версий и новых файлов требуется интернет.</p>
+
+<h3 id="flasher-update">2.6. Обычное обновление уже привязанного контроллера</h3>
+<ol class="steps">
+<li>Подключи контроллер и выбери его COM-порт.</li>
+<li>Нажми «ПРОВЕРИТЬ ESP32» и дождись успешного результата.</li>
+<li>Выбери нужную стабильную версию прошивки.</li>
+<li><strong>Убедись, что флажок «Сбросить старую привязку и создать новую» выключен.</strong></li>
+<li>Нажми «ПРОШИТЬ ESP32».</li>
+<li>В окне подтверждения проверь версию и описание операции, затем подтверди кнопкой «Да».</li>
+<li>Не отключай USB и не закрывай Flasher во время записи.</li>
+<li>Дождись сообщения об успешном завершении.</li>
+</ol>
+<p>Перед записью Flasher проверяет таблицу разделов и совместимость NVS. Если проверка NVS не проходит, операция должна быть остановлена. Не обходи это ограничение и не запускай полное стирание Flash. При выключенном флажке замены привязки обычное обновление сохраняет существующие pairing-данные, код и токены телефонов.</p>
+
+<h3 id="flasher-new">2.7. Первичная настройка нового, ещё не привязанного контроллера</h3>
+<ol class="steps">
+<li>Подключи новую плату и выбери COM-порт.</li>
+<li>Нажми «ПРОВЕРИТЬ ESP32» и дождись успешной проверки.</li>
+<li>Выбери версию прошивки.</li>
+<li>Оставь флажок сброса старой привязки выключенным.</li>
+<li>Нажми «ПРОШИТЬ ESP32» и подтверди операцию.</li>
+<li>Если Flasher определит пустую таблицу разделов и выполнит первичную настройку, он создаст код привязки, запишет его в контроллер и проверит результат.</li>
+<li>Код появится в поле «ПОСЛЕДНИЙ СОЗДАННЫЙ КОД ПРИВЯЗКИ». Нажми «СКОПИРОВАТЬ» и сохрани его в надёжном месте.</li>
+</ol>
+<p>Формат кода: <code>MK XXXX-XXXX-XXXX</code>. Это код первичной привязки MotoKey, а не пароль Wi-Fi и не случайный токен. Последний код, созданный на этом компьютере, сохраняется в <code>%LOCALAPPDATA%\MotoKeyFlasher\last-pairing-code.txt</code>.</p>
+<div class="warn">Для уже привязанной платы Flasher не извлекает старый код из ESP32. Если код ранее не создавался этим экземпляром Flasher и нигде не сохранён, программа не сможет восстановить его из контроллера.</div>
+
+<h3 id="flasher-reset">2.8. Когда можно включать «Сбросить старую привязку»</h3>
+<p>Используй этот флажок только если осознанно хочешь сбросить старую привязку и выполнить её заново, например при передаче контроллера новому владельцу.</p>
+<p>После подтверждения Flasher отправит команду сброса pairing-данных, удалит старый токен владельца, pairing-код и список доверенных телефонов, создаст новый код привязки и проверит его запись.</p>
+<div class="warn danger"><strong>Внимание: после сброса все прежние привязанные телефоны потеряют доступ.</strong> Их потребуется подключить заново. Не включай этот флажок при обычном обновлении и не используй его для добавления второго или третьего телефона. Полное стирание Flash этой командой не выполняется; настройки импульса в отдельном пространстве NVS не очищаются.</div>
+
+<h3>2.9. После успешной прошивки</h3>
+<ol class="steps">
+<li>Дождись финального сообщения Flasher.</li>
+<li>Проверь журнал операций: в нём должны быть подтверждения записи и проверки хеша.</li>
+<li>Сначала проверь контроллер и подключённое оборудование на безопасном стенде.</li>
+<li>Не подключай стартер, пока отдельно не убедился в корректной работе всей системы.</li>
+<li>После проверки установи и настрой мобильное приложение MotoKey по инструкции выше.</li>
+</ol>
+
+<h3 id="flasher-errors">2.10. Ошибки и важные правила безопасности</h3>
+<ul>
+<li><strong>Flasher не видит COM-порт:</strong> проверь USB-кабель, разъём и драйвер USB-UART; закрой программы, которые могут занимать COM-порт; нажми «Обновить».</li>
+<li><strong>Не проходит «ПРОВЕРИТЬ ESP32»:</strong> проверь, что подключена поддерживаемая классическая ESP32 и Flash 4 MB; проверь кабель, драйвер и COM-порт. Не прошивай плату, не прошедшую проверку.</li>
+<li><strong>Не загружается список версий или BIN-файлы:</strong> проверь интернет-соединение и повтори «ПРОВЕРИТЬ ОБНОВЛЕНИЯ». Если ошибка повторяется, сохрани её текст и журнал Flasher.</li>
+<li><strong>Ошибка совместимости NVS:</strong> не отключай проверку и не пытайся принудительно записать прошивку; не используй полное стирание Flash; сохрани журнал и обратись к разработчику.</li>
+<li><strong>Ошибка во время записи:</strong> сохрани журнал целиком. Не повторяй прошивку вслепую, пока причина не выяснена.</li>
+</ul>
+<ul>
+<li>Всегда сначала нажимай «ПРОВЕРИТЬ ESP32».</li>
+<li>Используй только поддерживаемый классический ESP32 с Flash 4 MB.</li>
+<li>Перед записью проверяй выбранную версию прошивки.</li>
+<li>При обычном обновлении не включай сброс привязки.</li>
+<li>Не обходи проверку совместимости NVS.</li>
+<li>Не отключай USB во время записи.</li>
+<li>После прошивки сначала проверяй систему на стенде, без подключения стартера.</li>
+</ul>
+</section>
+
+<div class="panel">
+<h2>Официальные загрузки и поддержка</h2>
+<p><a href="https://github.com/sdvg001/MotoKey-Firmware/releases/tag/apps-v1.1.0">Релиз приложений Android 1.1.0+4 и Windows Flasher 1.5.0</a></p>
+<p><a href="https://github.com/sdvg001/MotoKey-Firmware/releases/tag/v3.2.0">MotoKey CORE 3.2.0 — Shared Token</a></p>
+<p><a href="https://github.com/sdvg001/MotoKey-Firmware/issues">Сообщить об ошибке / задать вопрос</a></p>
+<p class="muted">При обращении за поддержкой приложи версию приложения, версию прошивки, модель платы и текст ошибки. Не публикуй pairing-код, токен или другие секретные данные.</p>
+</div>
+</main>
+<footer><div class="wrap">MotoKey · Официальная инструкция · <a href="index.html">Вернуться на главную</a></div></footer>
+</body>
+</html>
