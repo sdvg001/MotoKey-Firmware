@@ -4,13 +4,13 @@
   "channel": "stable",
   "latest_version": "3.2.0",
   "updated_at": "2026-11-20T15:23:44.416Z",
-  "message": "Доступна MotoKey CORE 3.2.0 — Shared Token.",
+  "message": "MotoKey CORE 3.2.0 доступна. Это одна из первых версий проекта; дальше планируются доработки и новые возможности.",
   "versions": [
     {
       "version": "3.2.0",
       "release_tag": "v3.2.0",
       "release_url": "https://github.com/sdvg001/MotoKey-Firmware/releases/tag/v3.2.0",
-      "notes": "Shared Token: one common token for up to 3 BLE phones; no trusted-device approval flow",
+      "notes": "Общий токен для подключения до трёх телефонов по BLE. Первые версии проекта; обновления и улучшения будут добавляться постепенно.",
       "min_flasher_version": "1.5.0",
       "chip": "esp32",
       "flash": {
