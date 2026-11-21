@@ -19,3 +19,7 @@ Firmware sources are kept by version in this directory. Published binary release
 - NVS namespaces retained: `mkpair` and `ierikhon`
 
 A release is only published after a successful build and a check that the partition-table SHA-256 matches the previous stable firmware. The workflow updates the Flasher manifest only after uploading the release binaries.
+
+## Связь
+
+Вопросы по проекту, предложения и сообщения об ошибках: [Telegram @chudohaha](https://t.me/chudohaha) или [GitHub Issues](https://github.com/sdvg001/MotoKey-Firmware/issues).
