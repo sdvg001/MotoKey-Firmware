@@ -36,6 +36,10 @@ jobs:
         with:
           path: ./site
 
+      # Give the artifact service a moment to expose the uploaded Pages bundle.
+      - name: Wait for Pages artifact
+        run: sleep 10
+
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
