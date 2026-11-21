@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#08111f">
-<meta name="description" content="MotoKey — прошивка ESP32, Android-приложение и MotoKey Flasher для Windows. Загрузки, инструкции и история версий.">
-<title>MotoKey — загрузки и инструкции</title>
+<meta name="description" content="MotoKey — самостоятельный проект контроллера для управления питанием и запуском мотоцикла через Android-смартфон. Прошивка, приложение и Windows Flasher.">
+<title>MotoKey — контроллер для мотоцикла</title>
 <style>
 :root{color-scheme:dark;--bg:#08111f;--panel:#101c2c;--line:#263b54;--text:#eff6ff;--muted:#9db0c7;--blue:#36a7ff;--cyan:#42d8e8;--green:#66d6a6;--amber:#ffc66e}
 *{box-sizing:border-box}
@@ -69,9 +69,9 @@ footer{border-top:1px solid rgba(130,170,210,.16);margin-top:36px;padding:28px 0
 <main>
   <div class="wrap">
     <section class="hero">
-      <span class="eyebrow"><span class="dot"></span> Проект для контроллера MotoKey</span>
-      <h1><span class="grad">MotoKey</span><br>всё для работы с контроллером</h1>
-      <p class="lead">Android-приложение, Windows Flasher и прошивка ESP32 в одном проекте. Здесь собраны официальные файлы, инструкции по подключению и история версий.</p>
+      <span class="eyebrow"><span class="dot"></span> Небольшой проект для мототехники</span>
+      <h1><span class="grad">MotoKey</span><br>управление запуском мотоцикла</h1>
+      <p class="lead">MotoKey — мой проект контроллера на ESP32. Идея простая: подключить телефон по Bluetooth и управлять питанием и запуском мотоцикла через устройство.</p>
       <div class="actions">
         <a class="btn primary" href="#downloads">Перейти к загрузкам ↓</a>
         <a class="btn" href="instructions.html">Инструкция по установке и подключению ↗</a>
@@ -81,13 +81,14 @@ footer{border-top:1px solid rgba(130,170,210,.16);margin-top:36px;padding:28px 0
 
     <section id="downloads">
       <div class="section-head">
-        <div><h2 class="section-title">Загрузки</h2><p class="section-sub">Используй только официальные сборки MotoKey.</p></div>
+        <div><h2 class="section-title">Что скачать</h2><p class="section-sub">Приложение, программа для прошивки и сама прошивка контроллера.</p></div>
       </div>
+      <div class="note"><strong>Проект ещё развивается.</strong> Сейчас доступны первые рабочие версии. Я продолжаю проверять и дорабатывать устройство, прошивку и приложение — дальше будут исправления и новые возможности. Это ранняя версия проекта, поэтому перед установкой и использованием внимательно прочитай инструкции.</div>
       <div class="grid">
         <article class="card">
           <div class="icon">📱</div>
           <h2>Android-приложение</h2>
-          <p>MotoKey для подключения телефона к контроллеру и управления им.</p>
+          <p>Подключение к контроллеру по Bluetooth и управление функциями POWER и START с телефона.</p>
           <p><strong>Текущая сборка:</strong> 1.1.0+4</p>
           <span class="status live">Опубликовано</span>
           <p style="margin-top:14px"><a class="btn primary" href="https://github.com/sdvg001/MotoKey-Firmware/releases/download/apps-v1.1.0/app-release.apk">Скачать APK ↗</a></p>
@@ -96,7 +97,7 @@ footer{border-top:1px solid rgba(130,170,210,.16);margin-top:36px;padding:28px 0
         <article class="card">
           <div class="icon">💻</div>
           <h2>Windows Flasher</h2>
-          <p>Установка и обновление прошивки ESP32, проверка COM-порта и контроль совместимости NVS.</p>
+          <p>Программа для подключения контроллера к компьютеру, проверки платы и установки или обновления прошивки.</p>
           <p><strong>Текущая версия:</strong> 1.5.0</p>
           <span class="status live">Опубликовано</span>
           <p style="margin-top:14px"><a class="btn primary" href="https://github.com/sdvg001/MotoKey-Firmware/releases/download/apps-v1.1.0/MotoKeyFlasher-Setup-1.5.0-x64.exe">Скачать установщик ↗</a></p>
@@ -105,7 +106,7 @@ footer{border-top:1px solid rgba(130,170,210,.16);margin-top:36px;padding:28px 0
         <article class="card">
           <div class="icon">⚙️</div>
           <h2>Прошивка ESP32</h2>
-          <p>MotoKey CORE 3.2.0 — Shared Token. До трёх одновременных BLE-подключений с общим токеном.</p>
+          <p>Программа для ESP32, которая связывает приложение с контроллером и поддерживает до трёх телефонов одновременно.</p>
           <p><strong>Последняя версия:</strong> 3.2.0</p>
           <span class="status live">Опубликована</span>
           <p style="margin-top:14px"><a class="btn primary" href="https://github.com/sdvg001/MotoKey-Firmware/releases/tag/v3.2.0">Открыть релиз 3.2.0 ↗</a></p>
@@ -117,7 +118,7 @@ footer{border-top:1px solid rgba(130,170,210,.16);margin-top:36px;padding:28px 0
 
     <section id="start">
       <div class="section-head">
-        <div><h2 class="section-title">Начало работы</h2><p class="section-sub">Правильный порядок установки и обновления контроллера.</p></div>
+        <div><h2 class="section-title">С чего начать</h2><p class="section-sub">Коротко о первом подключении и настройке.</p></div>
       </div>
       <div class="steps">
         <div class="step"><span class="num">1</span><div><strong>Установи MotoKey Flasher</strong><p>Запусти Windows-установщик. При необходимости установи .NET 10 Desktop Runtime x64.</p></div></div>
@@ -132,7 +133,7 @@ footer{border-top:1px solid rgba(130,170,210,.16);margin-top:36px;padding:28px 0
 
     <section id="versions">
       <div class="section-head">
-        <div><h2 class="section-title">История версий</h2><p class="section-sub">Текущие сборки и опубликованные релизы.</p></div>
+        <div><h2 class="section-title">Версии проекта</h2><p class="section-sub">Что уже собрано и доступно сейчас.</p></div>
       </div>
       <table>
         <thead><tr><th>Компонент</th><th>Версия</th><th>Изменения / статус</th></tr></thead>
@@ -147,8 +148,8 @@ footer{border-top:1px solid rgba(130,170,210,.16);margin-top:36px;padding:28px 0
 
     <section id="support">
       <div class="card">
-        <h2>Нужна помощь?</h2>
-        <p>Перед обращением приложи версию Flasher, версию прошивки, модель платы и текст ошибки. Не публикуй pairing-коды, токены и другие секретные данные.</p>
+        <h2>Нашёл ошибку или есть идея?</h2>
+        <p>Проект пока в первых версиях, поэтому обратная связь очень помогает. Напиши, что не получилось, укажи версию приложения или прошивки и модель платы. Не публикуй pairing-коды и токены.</p>
         <div class="actions">
           <a class="btn primary" href="https://github.com/sdvg001/MotoKey-Firmware/issues">Сообщить об ошибке ↗</a>
           <a class="btn" href="https://github.com/sdvg001/MotoKey-Firmware">Репозиторий проекта ↗</a>
@@ -159,7 +160,7 @@ footer{border-top:1px solid rgba(130,170,210,.16);margin-top:36px;padding:28px 0
   </div>
 </main>
 <footer>
-  <div class="wrap footer-row"><div><strong style="color:#eaf5ff">MotoKey</strong><br>Проект контроллера ESP32 и сопутствующего ПО.</div><div>Официальный репозиторий: <a href="https://github.com/sdvg001/MotoKey-Firmware">GitHub / MotoKey-Firmware</a></div></div>
+  <div class="wrap footer-row"><div><strong style="color:#eaf5ff">MotoKey</strong><br>Небольшой проект для управления запуском и питанием мотоцикла. Проект развивается.</div><div>Официальный репозиторий: <a href="https://github.com/sdvg001/MotoKey-Firmware">GitHub / MotoKey-Firmware</a></div></div>
 </footer>
 </body>
 </html>
