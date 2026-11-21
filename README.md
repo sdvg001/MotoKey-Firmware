@@ -9,8 +9,15 @@ MotoKey — проект программного обеспечения для 
 | Компонент | Версия | Статус |
 |---|---:|---|
 | Прошивка ESP32 | **CORE 3.2.0 — Shared Token** | Опубликована |
-| Windows Flasher | **1.5.0** | Рабочая сборка; публичный установщик готовится к загрузке в Releases |
-| Android-приложение | **1.1.0+4** | Рабочая сборка; публичный APK готовится к загрузке в Releases |
+| Windows Flasher | **1.5.0** | Опубликован — [скачать Setup x64](https://github.com/sdvg001/MotoKey-Firmware/releases/download/apps-v1.1.0/MotoKeyFlasher-Setup-1.5.0-x64.exe) |
+| Android-приложение | **1.1.0+4** | Опубликовано — [скачать APK](https://github.com/sdvg001/MotoKey-Firmware/releases/download/apps-v1.1.0/app-release.apk) |
+
+## Скачать приложения
+
+Оба установочных файла опубликованы в релизе [MotoKey Apps — Android 1.1.0+4 / Windows Flasher 1.5.0](https://github.com/sdvg001/MotoKey-Firmware/releases/tag/apps-v1.1.0).
+
+- [Android APK 1.1.0+4](https://github.com/sdvg001/MotoKey-Firmware/releases/download/apps-v1.1.0/app-release.apk)
+- [Windows Flasher Setup 1.5.0 x64](https://github.com/sdvg001/MotoKey-Firmware/releases/download/apps-v1.1.0/MotoKeyFlasher-Setup-1.5.0-x64.exe)
 
 ## Скачать прошивку
 
@@ -47,4 +54,4 @@ MotoKey — проект программного обеспечения для 
 
 Сообщения об ошибках и вопросы по проекту: [GitHub Issues](https://github.com/sdvg001/MotoKey-Firmware/issues).
 
-> APK Android и установщик Windows пока не приложены к публичным GitHub Releases. Не скачивай их с неофициальных сайтов. Ссылки на установочные файлы появятся здесь после публикации самих файлов.
+> APK Android и установщик Windows опубликованы в официальном [релизе приложений](https://github.com/sdvg001/MotoKey-Firmware/releases/tag/apps-v1.1.0). Скачивай установочные файлы только по ссылкам выше или со страницы проекта.
