@@ -1,0 +1,218 @@
+name: Build and publish MotoKey CORE 3.3.0 (experimental)
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "firmware/MotoKey_CORE_3_3_0_TIMER_START/**"
+      - ".github/workflows/build-firmware-3_3_0.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: motokey-firmware-3-3-0-release
+  cancel-in-progress: false
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Arduino CLI
+        uses: arduino/setup-arduino-cli@v2
+
+      - name: Install ESP32 core and NimBLE
+        run: |
+          arduino-cli config init
+          arduino-cli config add board_manager.additional_urls https://espressif.github.io/arduino-esp32/package_esp32_index.json
+          arduino-cli core update-index
+          arduino-cli core install esp32:esp32@3.3.12
+          arduino-cli lib update-index
+          arduino-cli lib install "NimBLE-Arduino@2.5.2"
+
+      - name: Compile MotoKey CORE 3.3.0
+        shell: bash
+        run: |
+          set -euo pipefail
+          SKETCH="MotoKey_CORE_3_3_0_TIMER_START"
+          SKETCH_DIR="firmware/${SKETCH}"
+          FQBN="esp32:esp32:esp32:CPUFreq=240,FlashFreq=80,FlashMode=dio,FlashSize=4M,PartitionScheme=default,DebugLevel=none,PSRAM=disabled,LoopCore=1,EventsCore=1,EraseFlash=none"
+          mkdir -p build dist
+          arduino-cli compile --warnings all --fqbn "$FQBN" --output-dir build "$SKETCH_DIR"
+
+          echo "Arduino CLI output files:"
+          ls -la build
+
+          BOOTLOADER_FILE="$(find build -maxdepth 1 -type f -name '*.bootloader.bin' -print -quit)"
+          PARTITIONS_FILE="$(find build -maxdepth 1 -type f -name '*.partitions.bin' -print -quit)"
+          BOOT_APP0_FILE="$(find "$HOME/.arduino15/packages/esp32" -type f -name 'boot_app0.bin' -print -quit)"
+          SKETCH_BIN_FILE="$(find build -maxdepth 1 -type f -name '*.ino.bin' -print -quit)"
+
+          test -n "$BOOTLOADER_FILE"
+          test -n "$PARTITIONS_FILE"
+          test -n "$BOOT_APP0_FILE"
+          test -n "$SKETCH_BIN_FILE"
+
+          cp "$BOOTLOADER_FILE" dist/bootloader.bin
+          cp "$PARTITIONS_FILE" dist/partitions.bin
+          cp "$BOOT_APP0_FILE" dist/boot_app0.bin
+          cp "$SKETCH_BIN_FILE" dist/motokey.bin
+
+          test -s dist/bootloader.bin
+          test -s dist/partitions.bin
+          test -s dist/boot_app0.bin
+          test -s dist/motokey.bin
+
+      - name: Verify START safety path and preserved NVS namespaces
+        shell: bash
+        run: |
+          set -euo pipefail
+          SKETCH="firmware/MotoKey_CORE_3_3_0_TIMER_START/MotoKey_CORE_3_3_0_TIMER_START.ino"
+          grep -Fq 'pairPrefs.begin("mkpair"' "$SKETCH"
+          grep -Fq 'prefs.begin("ierikhon"' "$SKETCH"
+          python3 - <<'PY'
+          from pathlib import Path
+          source = Path("firmware/MotoKey_CORE_3_3_0_TIMER_START/MotoKey_CORE_3_3_0_TIMER_START.ino").read_text(encoding="utf-8")
+          auth_pos = source.find('if (!isAuthorized(handle))')
+          start_pos = source.find('if (upper == "START")')
+          timer_pos = source.find('if (upper == "TIMER_START")')
+          stop_pos = source.find('if (upper == "DISARM" || upper == "STOP")', timer_pos)
+          if min(auth_pos, start_pos, timer_pos, stop_pos) < 0 or not (auth_pos < start_pos < timer_pos < stop_pos):
+              raise SystemExit("Could not verify command/authentication layout")
+          manual = source[start_pos:timer_pos]
+          timer = source[timer_pos:stop_pos]
+          if 'DENIED:NOT_ARMED' not in manual or 'DENIED:ARM_EXPIRED' not in manual:
+              raise SystemExit("Manual START lost its ARM checks")
+          if 'if (!powerOn)' not in timer or 'DENIED:TIMER_REQUIRES_POWER_ON' not in timer:
+              raise SystemExit("TIMER_START must require POWER_ON")
+          if 'DENIED:NOT_ARMED' in timer or 'DENIED:ARM_EXPIRED' in timer:
+              raise SystemExit("TIMER_START must remain a separate path from manual ARM")
+          print("Manual START ARM guard, TIMER_START POWER guard, BLE authorization guard and NVS namespaces verified.")
+          PY
+
+      - name: Verify partition compatibility and calculate SHA-256
+        id: hashes
+        shell: bash
+        run: |
+          set -euo pipefail
+          EXPECTED_PARTITIONS="$(jq -r '.versions[] | select(.version == "3.2.0") | .partition_table_sha256' manifest.json)"
+          ACTUAL_PARTITIONS="$(sha256sum dist/partitions.bin | awk '{print $1}')"
+          if [ -z "$EXPECTED_PARTITIONS" ] || [ "$ACTUAL_PARTITIONS" != "$EXPECTED_PARTITIONS" ]; then
+            echo "ERROR: partition table differs from published 3.2.0; release stopped to protect NVS."
+            echo "Expected: $EXPECTED_PARTITIONS"
+            echo "Actual:   $ACTUAL_PARTITIONS"
+            exit 1
+          fi
+
+          echo "bootloader=$(sha256sum dist/bootloader.bin | awk '{print $1}')" >> "$GITHUB_OUTPUT"
+          echo "partitions=$ACTUAL_PARTITIONS" >> "$GITHUB_OUTPUT"
+          echo "boot_app0=$(sha256sum dist/boot_app0.bin | awk '{print $1}')" >> "$GITHUB_OUTPUT"
+          echo "motokey=$(sha256sum dist/motokey.bin | awk '{print $1}')" >> "$GITHUB_OUTPUT"
+
+          (
+            cd dist
+            sha256sum bootloader.bin partitions.bin boot_app0.bin motokey.bin > 3.3.0.sha256
+          )
+
+      - name: Publish experimental GitHub Release v3.3.0
+        uses: softprops/action-gh-release@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: v3.3.0
+          target_commitish: ${{ github.sha }}
+          name: MotoKey CORE 3.3.0 — Timer START (экспериментальная)
+          body: |
+            MotoKey CORE 3.3.0 — Timer START (экспериментальная версия)
+
+            Основана на CORE 3.2.0 Shared Token.
+
+            - Ручной START по-прежнему требует ARM и 15-секундное окно.
+            - Добавлена отдельная команда TIMER_START для завершения таймера часов.
+            - TIMER_START требует авторизованное BLE-подключение и уже включённый POWER.
+            - Сохранены NVS namespaces mkpair и ierikhon.
+            - Таблица разделов проверена на точное совпадение с CORE 3.2.0.
+            - Полное стирание Flash отключено.
+
+            ВАЖНО: это экспериментальная версия. До подключения стартера обязательно проверь импульс на безопасном стенде с отключённой цепью стартера.
+
+            Сборка: ESP32 Dev Module, Arduino-ESP32 3.3.12, NimBLE-Arduino 2.5.2, Flash 4 MB, DIO, 80 MHz.
+          files: |
+            dist/bootloader.bin
+            dist/partitions.bin
+            dist/boot_app0.bin
+            dist/motokey.bin
+            dist/3.3.0.sha256
+          fail_on_unmatched_files: true
+          draft: false
+          prerelease: true
+
+      - name: Add 3.3.0 to Flasher version list (keep 3.2.0 as default)
+        uses: actions/github-script@v7
+        env:
+          SHA_BOOTLOADER: ${{ steps.hashes.outputs.bootloader }}
+          SHA_PARTITIONS: ${{ steps.hashes.outputs.partitions }}
+          SHA_BOOT_APP0: ${{ steps.hashes.outputs.boot_app0 }}
+          SHA_MOTOKEY: ${{ steps.hashes.outputs.motokey }}
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const path = "manifest.json";
+            const version = "3.3.0";
+            const tag = "v3.3.0";
+            const base = `https://github.com/${owner}/${repo}/releases/download/${tag}/`;
+
+            const current = await github.rest.repos.getContent({ owner, repo, path, ref: "main" });
+            if (Array.isArray(current.data) || !current.data.content) {
+              throw new Error("manifest.json was not returned as a file");
+            }
+
+            const manifest = JSON.parse(Buffer.from(current.data.content, "base64").toString("utf8"));
+            if (!(manifest.versions || []).some(v => v.version === "3.2.0")) {
+              throw new Error("Stable CORE 3.2.0 not found; refusing to alter the Flasher feed");
+            }
+
+            const release = {
+              version,
+              release_tag: tag,
+              release_url: `https://github.com/${owner}/${repo}/releases/tag/${tag}`,
+              notes: "ЭКСПЕРИМЕНТАЛЬНАЯ: таймер часов использует отдельную команду TIMER_START без ручного ARM; авторизованное BLE-подключение и POWER_ON обязательны. Ручной START по-прежнему защищён ARM.",
+              min_flasher_version: "1.5.0",
+              chip: "esp32",
+              flash: {
+                mode: "dio",
+                frequency: "80m",
+                size: "4MB",
+                erase_flash: false
+              },
+              nvs_compatible: true,
+              partition_table_sha256: process.env.SHA_PARTITIONS,
+              files: [
+                { name: "bootloader.bin", offset: "0x1000", url: base + "bootloader.bin", sha256: process.env.SHA_BOOTLOADER },
+                { name: "partitions.bin", offset: "0x8000", url: base + "partitions.bin", sha256: process.env.SHA_PARTITIONS },
+                { name: "boot_app0.bin", offset: "0xE000", url: base + "boot_app0.bin", sha256: process.env.SHA_BOOT_APP0 },
+                { name: "motokey.bin", offset: "0x10000", url: base + "motokey.bin", sha256: process.env.SHA_MOTOKEY }
+              ]
+            };
+
+            manifest.versions = (manifest.versions || []).filter(v => v.version !== version);
+            manifest.versions.unshift(release);
+            // Keep the stable default so an experimental image is never selected implicitly.
+            manifest.latest_version = "3.2.0";
+            manifest.updated_at = new Date().toISOString();
+            manifest.message = "В списке Флешера доступна экспериментальная CORE 3.3.0. Версия по умолчанию остаётся стабильной CORE 3.2.0.";
+
+            await github.rest.repos.createOrUpdateFileContents({
+              owner,
+              repo,
+              path,
+              branch: "main",
+              message: "Add experimental MotoKey 3.3.0 to Flasher manifest",
+              sha: current.data.sha,
+              content: Buffer.from(JSON.stringify(manifest, null, 2) + "\n").toString("base64")
+            });
