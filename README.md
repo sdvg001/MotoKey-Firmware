@@ -11,7 +11,7 @@ MotoKey — мой небольшой проект для мототехники
 
 | Компонент | Версия | Статус |
 |---|---:|---|
-| Прошивка ESP32 | **CORE 3.2.0 — Shared Token** | Опубликована |
+| Прошивка ESP32 | **3.2.0 — Stable**; **3.3.0 — Timer START (экспериментальная)** | 3.2.0 остаётся версией по умолчанию; 3.3.0 можно выбрать в Flasher |
 | Windows Flasher | **1.5.0** | Опубликован — [скачать Setup x64](https://github.com/sdvg001/MotoKey-Firmware/releases/download/apps-v1.1.0/MotoKeyFlasher-Setup-1.5.0-x64.exe) |
 | Android-приложение | **1.1.0+4** | Опубликовано — [скачать APK](https://github.com/sdvg001/MotoKey-Firmware/releases/download/apps-v1.1.0/app-release.apk) |
 
@@ -27,6 +27,10 @@ MotoKey — мой небольшой проект для мототехники
 [**MotoKey CORE 3.2.0 — Shared Token**](https://github.com/sdvg001/MotoKey-Firmware/releases/tag/v3.2.0)
 
 Релиз включает bootloader.bin, partitions.bin, boot_app0.bin, motokey.bin и файл SHA-256. Для обычного обновления рекомендуется использовать MotoKey Flasher: он получает список версий из manifest.json, скачивает недостающие файлы и проверяет их контрольные суммы перед записью.
+
+[**MotoKey CORE 3.3.0 — Timer START (экспериментальная)**](https://github.com/sdvg001/MotoKey-Firmware/releases/tag/v3.3.0)
+
+Версия 3.3.0 добавляет отдельную команду запуска по таймеру. Она доступна для ручного выбора в Flasher; версия по умолчанию остаётся стабильной 3.2.0. 3.3.0 успешно скомпилирована, но ещё не прошла физическую стендовую проверку — перед подключением стартера обязательно протестируй её с отключённой цепью стартера.
 
 ## Перед подключением и прошивкой
 
@@ -46,6 +50,7 @@ MotoKey — мой небольшой проект для мототехники
 
 ## История прошивок
 
+- **3.3.0 — Timer START (экспериментальная)** — отдельная команда для запуска по завершении таймера часов; обычный START по-прежнему требует ARM.
 - **3.2.0** — Shared Token: общий токен для нескольких телефонов, до трёх BLE-подключений.
 - **3.1.0** — Multi Client: несколько BLE-клиентов и прежняя схема доверенных устройств.
 
@@ -53,6 +58,7 @@ MotoKey — мой небольшой проект для мототехники
 
 ## Заметки к версиям
 
+- [CORE 3.3.0 — Timer START (экспериментальная)](release-notes/3.3.0.md)
 - [CORE 3.2.0 — Shared Token](release-notes/3.2.0.md)
 - [Android 1.1.0+4 и Windows Flasher 1.5.0](release-notes/apps-v1.1.0.md)
 - [CORE 3.1.0 — Multi Client](release-notes/3.1.0.md)
